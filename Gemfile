@@ -6,6 +6,8 @@ ruby File.read(File.join(__dir__, '.ruby-version')).chomp.delete_prefix('ruby-')
 
 gem 'erubi'
 gem 'http'
+gem 'rack-host-redirect'
+gem 'rackup'
 gem 'rake'
 gem 'roda'
 gem 'sequel'
