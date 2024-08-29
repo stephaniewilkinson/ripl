@@ -7,7 +7,7 @@ require 'tilt'
 require_relative 'lib/db'
 
 class App < Roda
-  JOBS = DB[:jobs]
+  Job = DB[:jobs]
 
   plugin :assets, css: 'tailwind.css'
   plugin :head
@@ -34,7 +34,7 @@ class App < Roda
       end
 
       r.on String do |id|
-        @job = JOBS.where(OCC_CODE: id).first
+        @job = Job.where(OCC_CODE: id).first
         view 'show'
       end
     end
