@@ -23,6 +23,11 @@ class App < Roda
       view 'home'
     end
 
+    r.post do
+      @query = r.params['search']
+      r.redirect "jobs/#{@query}"
+    end
+
     r.on 'jobs' do
       r.get true do
         view 'index'
