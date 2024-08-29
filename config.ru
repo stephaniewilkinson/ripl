@@ -30,6 +30,7 @@ class App < Roda
 
     r.on 'jobs' do
       r.get true do
+        @jobs = Job.limit(50)
         view 'index'
       end
 
