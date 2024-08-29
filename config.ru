@@ -24,8 +24,19 @@ class App < Roda
     end
 
     r.post do
-      @query = r.params['search']
-      r.redirect "jobs/#{@query}"
+      @occ_code = r.params['occ_code']
+      @occ_title = r.params['occ_title']
+      if @occ_code
+        r.redirect "jobs/#{@occ_code}"
+      else
+        @jobs =
+          if @occ_title && !@occ_title.strip.empty?
+            Job.where(Sequel.ilike(:occ_title, "%#{@occ_title}%")).all
+          else
+            Job.all
+          end
+        view 'results'
+      end
     end
 
     r.on 'jobs' do

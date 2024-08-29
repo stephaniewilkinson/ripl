@@ -22,3 +22,6 @@ Style/MethodDefParentheses:
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
+
+Style/Copyright:
+  Enabled: false
