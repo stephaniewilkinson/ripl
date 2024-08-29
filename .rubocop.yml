@@ -14,3 +14,11 @@ Bundler/GemComment:
 
 Bundler/GemVersion:
   Enabled: false
+
+#################### Styles ################################
+
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: false

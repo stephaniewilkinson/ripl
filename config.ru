@@ -8,15 +8,30 @@ require_relative 'lib/db'
 
 class App < Roda
   JOBS = DB[:jobs]
+
+  plugin :assets, css: 'tailwind.css'
+  plugin :head
+  plugin :public, root: 'assets'
   plugin :render
+  plugin :slash_path_empty
 
   route do |r|
+    r.assets
+    r.public
+
     r.root do
-      render('home')
+      view 'home'
     end
 
-    r.on('index') do
-      render('index')
+    r.on 'jobs' do
+      r.get true do
+        view 'index'
+      end
+
+      r.on String do |id|
+        @job = JOBS.where(OCC_CODE: id).first
+        view 'show'
+      end
     end
   end
 end
