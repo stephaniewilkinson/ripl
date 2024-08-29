@@ -31,7 +31,7 @@ class App < Roda
         if query.empty?
           []
         else
-          Job.where(Sequel.ilike(:occ_title, "%#{query}%")).limit(100).all
+          Job.select(:area_title, :occ_title, :tot_emp, ).where(Sequel.ilike(:occ_title, "%#{query}%")).limit(100).all
         end
       partial 'results'
     end

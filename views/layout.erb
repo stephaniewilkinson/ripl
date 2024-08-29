@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="/tailwind.css" rel="stylesheet"> -->
     <%= assets(:css) %>
     <%= assets(:img) %>
     <title>RIPL</title>
@@ -12,17 +11,19 @@
 
   <body class="h-full">
     <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
+        <div class="mx-auto max-w-screen-2xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
             <div class="relative flex h-32 justify-between">
                 <div class="relative z-10 flex px-2 lg:px-0">
                     <div class="flex flex-shrink-0 items-center">
-                    <img class="h-32 w-auto" src="/img/ripl.png" alt="Your Company">
+                        <a href="/">
+                            <img class="h-32 w-auto" src="/img/ripl.png" alt="RIPL">
+                        </a>
                     </div>
                 </div>
             </div>
             <nav class="lg:flex lg:space-x-8 lg:py-2" aria-label="Global">
-            <a href="/" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900">Home</a>
-            <a href="/jobs" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900">All Jobs</a>
+                <a href="/" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900">Home</a>
+                <a href="/jobs" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 hover:text-gray-900">All Jobs</a>
             </nav>
         </div>
     </header>
