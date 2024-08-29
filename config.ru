@@ -14,6 +14,7 @@ class App < Roda
   plugin :public, root: 'assets'
   plugin :render
   plugin :slash_path_empty
+  plugin :partials, views: 'views'
 
   route do |r|
     r.assets
@@ -23,20 +24,15 @@ class App < Roda
       view 'home'
     end
 
-    r.post do
-      @occ_code = r.params['occ_code']
-      @occ_title = r.params['occ_title']
-      if @occ_code
-        r.redirect "jobs/#{@occ_code}"
-      else
-        @jobs =
-          if @occ_title && !@occ_title.strip.empty?
-            Job.where(Sequel.ilike(:occ_title, "%#{@occ_title}%")).all
-          else
-            Job.all
-          end
-        view 'results'
-      end
+    r.post 'search' do
+      query = r.params['search'].to_s.strip
+      @jobs =
+        if query.empty?
+          []
+        else
+          Job.where(Sequel.ilike(:occ_title, "%#{query}%")).limit(100).all
+        end
+      partial 'results'
     end
 
     r.on 'jobs' do
