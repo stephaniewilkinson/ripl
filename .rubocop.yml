@@ -25,3 +25,9 @@ Style/MethodCallWithArgsParentheses:
 
 Style/Copyright:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Lint/ConstantResolution:
+  Enabled: false

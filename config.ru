@@ -8,6 +8,7 @@ require_relative 'lib/db'
 
 class App < Roda
   Job = DB[:jobs]
+  public_constant :Job
 
   plugin :assets, css: 'tailwind.css'
   plugin :head
