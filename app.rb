@@ -89,10 +89,10 @@ class App < Roda
         if occ_title.empty?
           []
         else
-          Job.select(:area_title, :prim_state, :occ_code, :occ_title, :tot_emp)
+          Job.select(:occ_title, :area_title, :prim_state, :occ_code, :tot_emp)
              .where(area_title:)
              .where(Sequel.ilike(:occ_title, "%#{occ_title}%"))
-             .order(Sequel.desc(Sequel.lit("CAST(REPLACE(TOT_EMP, ',', '') AS INTEGER)")))
+             .order(Sequel.desc(Sequel.lit("CAST(REPLACE(TOT_EMP, ',', '') AS INTEGER)"))) # TODO: convert strings to integers in db
              .limit(100)
              .all
         end
