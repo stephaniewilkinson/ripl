@@ -12,20 +12,18 @@
 
   <body class="h-full">
     <header class="bg-white shadow">
-        <div class="mx-auto max-w-screen-2xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
-            <div class="relative flex h-32 justify-between">
-                <div class="relative z-10 flex px-2 lg:px-0">
-                    <div class="flex flex-shrink-0 items-center">
-                        <a href="/">
-                            <img class="h-32 w-auto" src="/img/ripl.png" alt="RIPL">
-                        </a>
-                    </div>
+        <div class="mx-auto max-w-screen-2xl lg:divide-y lg:divide-gray-200 md:px-2">
+            <div class="relative flex h-32">
+                <div class="flex flex-shrink-0 items-center">
+                    <a href="/">
+                        <img class="h-32 w-auto" src="/img/ripl.png" alt="RIPL">
+                    </a>
                 </div>
             </div>
         </div>
     </header>
     <main>
-      <div class="max-w-screen-2xl mx-auto px-4">
+      <div class="max-w-screen-2xl mx-auto md:px-4">
         <%= yield %>
       </div>
     </main>
