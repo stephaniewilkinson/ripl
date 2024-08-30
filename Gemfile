@@ -4,11 +4,12 @@ source 'https://rubygems.org'
 
 ruby File.read(File.join(__dir__, '.ruby-version')).chomp.delete_prefix('ruby-')
 
-gem 'http'
+gem 'puma'
 gem 'rackup'
 gem 'roda'
 gem 'sequel'
 gem 'sqlite3'
+gem 'tilt'
 
 group :development do
   gem 'rubocop'

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'http'
 require 'roda'
 require_relative 'lib/db'
 
