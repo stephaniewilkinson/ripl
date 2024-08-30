@@ -31,7 +31,7 @@ class App < Roda
         if query.empty?
           []
         else
-          Job.select(:area_title, :occ_title, :tot_emp, ).where(Sequel.ilike(:occ_title, "%#{query}%")).limit(100).all
+          Job.select(:area_title, :prim_state, :occ_code, :occ_title, :tot_emp, ).where(Sequel.ilike(:occ_title, "%#{query}%")).limit(100).all
         end
       partial 'results'
     end
@@ -42,8 +42,8 @@ class App < Roda
         view 'index'
       end
 
-      r.on String do |id|
-        @job = Job.where(OCC_CODE: id).first
+      r.on String, String do |prim_state, occ_code|
+        @job = Job.where(OCC_CODE: occ_code, PRIM_STATE: prim_state).first
         view 'show'
       end
     end
