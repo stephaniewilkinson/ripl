@@ -1,10 +1,9 @@
 require:
   - rubocop-performance
-  - rubocop-rake
   - rubocop-sequel
 
 AllCops:
-  TargetRubyVersion: 3.3.1
+  TargetRubyVersion: 3.3
   EnabledByDefault: true
 
 #################### Bundler ##############################
