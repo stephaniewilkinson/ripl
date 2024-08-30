@@ -1,34 +1,32 @@
-<div class="px-4 sm:px-6 lg:px-8">
-    <div class="mt-8 flow-root">
-        <div class="mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                <% if @jobs.empty? %>
-                    No results found, try a different search.
-                <% else %>
-                    <table class="min-w-full divide-y divide-gray-300 table-auto">
-                        <thead>
+<div class="m-8 flow-root">
+    <div class="m-6 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <% if @jobs.empty? %>
+                No results found, try a different search.
+            <% else %>
+                <table class="min-w-full divide-y divide-gray-300 table-auto">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Occupation</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">State</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Category</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total Employees</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y striped divide-gray-200">
+                        <% @jobs.each do |job| %>
                             <tr>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">State</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Category</th>
-                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Total Employees</th>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-0">
+                                    <a href="/jobs/<%= job[:PRIM_STATE] %>/<%= job[:OCC_CODE] %>" class="text-indigo-600 hover:text-indigo-900"><%= job[:OCC_TITLE] %></a>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:AREA_TITLE] %></td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:OCC_TITLE] %></td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:TOT_EMP] %></td>
                             </tr>
-                        </thead>
-                        <tbody class="divide-y striped divide-gray-200">
-                            <% @jobs.each do |job| %>
-                                <tr>
-                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-0">
-                                        <a href="/jobs/<%= job[:PRIM_STATE] %>/<%= job[:OCC_CODE] %>" class="text-indigo-600 hover:text-indigo-900"><%= job[:OCC_TITLE] %></a>
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:AREA_TITLE] %></td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:OCC_TITLE] %></td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= job[:TOT_EMP] %></td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                <% end %>
-            </div>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% end %>
         </div>
     </div>
 </div>

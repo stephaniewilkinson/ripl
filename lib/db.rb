@@ -2,4 +2,4 @@
 
 require 'sequel'
 
-DB = Sequel.connect('sqlite://salaries.db')
+DB = Sequel.connect('sqlite://db/salaries.db')

@@ -2,7 +2,6 @@
 
 require 'http'
 require 'roda'
-require 'tilt'
 require_relative 'lib/db'
 
 class App < Roda
@@ -85,28 +84,20 @@ class App < Roda
     r.post 'search' do
       occ_title = r.params['job-title'].to_s.strip
       area_title = r.params['state'].to_s.strip
+      # TODO: convert strings to integers in db
       @jobs =
-        if occ_title.empty?
-          []
-        else
-          Job.select(:occ_title, :area_title, :prim_state, :occ_code, :tot_emp)
-             .where(area_title:)
-             .where(Sequel.ilike(:occ_title, "%#{occ_title}%"))
-             .order(Sequel.desc(Sequel.lit("CAST(REPLACE(TOT_EMP, ',', '') AS INTEGER)"))) # TODO: convert strings to integers in db
-             .limit(100)
-             .all
-        end
+        Job.select(:occ_title, :area_title, :prim_state, :occ_code, :tot_emp)
+           .where(area_title:)
+           .where(Sequel.ilike(:occ_title, "%#{occ_title}%"))
+           .order(Sequel.desc(Sequel.lit("CAST(REPLACE(TOT_EMP, ',', '') AS INTEGER)")))
+           .limit(100)
+           .all
       partial 'results'
     end
 
     r.on 'jobs' do
-      r.get true do
-        @jobs = Job.limit(50)
-        view 'index'
-      end
-
       r.on String, String do |prim_state, occ_code|
-        @job = Job.where(OCC_CODE: occ_code, PRIM_STATE: prim_state).first
+        @job = Job.first(OCC_CODE: occ_code, PRIM_STATE: prim_state)
         view 'show'
       end
     end
